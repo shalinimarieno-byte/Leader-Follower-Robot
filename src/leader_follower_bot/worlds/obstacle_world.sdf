@@ -1,0 +1,158 @@
+<?xml version="1.0" ?>
+<sdf version="1.8">
+  <world name="slalom_course_world">
+
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <!-- Essential Systems Plugins -->
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+
+    <!-- Directional Sun Light -->
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 12 0 0 0</pose>
+      <diffuse>0.95 0.95 0.95 1</diffuse>
+      <specular>0.3 0.3 0.3 1</specular>
+      <direction>-0.5 0.2 -0.8</direction>
+    </light>
+
+    <!-- Ground Plane (Dark Asphalt Finish) -->
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry><plane><normal>0 0 1</normal><size>40 40</size></plane></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><plane><normal>0 0 1</normal><size>40 40</size></plane></geometry>
+          <material>
+            <ambient>0.25 0.25 0.28 1</ambient>
+            <diffuse>0.25 0.25 0.28 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ARENA ENCLOSURE (20m x 20m Outer Perimeter) -->
+    <model name="boundary_north">
+      <pose>0 10.0 0.75 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>20.0 0.3 1.5</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>20.0 0.3 1.5</size></box></geometry><material><ambient>0.15 0.15 0.2 1</ambient><diffuse>0.15 0.15 0.2 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <model name="boundary_south">
+      <pose>0 -10.0 0.75 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>20.0 0.3 1.5</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>20.0 0.3 1.5</size></box></geometry><material><ambient>0.15 0.15 0.2 1</ambient><diffuse>0.15 0.15 0.2 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <model name="boundary_east">
+      <pose>10.0 0 0.75 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.3 20.0 1.5</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.3 20.0 1.5</size></box></geometry><material><ambient>0.15 0.15 0.2 1</ambient><diffuse>0.15 0.15 0.2 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <model name="boundary_west">
+      <pose>-10.0 0 0.75 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.3 20.0 1.5</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.3 20.0 1.5</size></box></geometry><material><ambient>0.15 0.15 0.2 1</ambient><diffuse>0.15 0.15 0.2 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <!-- SECTION 1: SLALOM COURSE (CYLINDERS) -->
+    <model name="slalom_pillar_1">
+      <pose>2.0 1.5 0.8 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><cylinder><radius>0.35</radius><length>1.6</length></cylinder></geometry></collision>
+        <visual name="vis"><geometry><cylinder><radius>0.35</radius><length>1.6</length></cylinder></geometry><material><ambient>0.9 0.7 0.0 1</ambient><diffuse>0.9 0.7 0.0 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <model name="slalom_pillar_2">
+      <pose>4.0 -1.5 0.8 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><cylinder><radius>0.35</radius><length>1.6</length></cylinder></geometry></collision>
+        <visual name="vis"><geometry><cylinder><radius>0.35</radius><length>1.6</length></cylinder></geometry><material><ambient>0.9 0.7 0.0 1</ambient><diffuse>0.9 0.7 0.0 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <model name="slalom_pillar_3">
+      <pose>6.0 1.5 0.8 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><cylinder><radius>0.35</radius><length>1.6</length></cylinder></geometry></collision>
+        <visual name="vis"><geometry><cylinder><radius>0.35</radius><length>1.6</length></cylinder></geometry><material><ambient>0.9 0.7 0.0 1</ambient><diffuse>0.9 0.7 0.0 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <!-- SECTION 2: CHICANE / S-BEND WALL BARRIERS -->
+    <model name="chicane_left">
+      <pose>-2.5 3.0 0.6 0 0 0.35</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>3.5 0.3 1.2</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>3.5 0.3 1.2</size></box></geometry><material><ambient>0.8 0.2 0.1 1</ambient><diffuse>0.8 0.2 0.1 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <model name="chicane_right">
+      <pose>-4.0 1.0 0.6 0 0 0.35</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>3.5 0.3 1.2</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>3.5 0.3 1.2</size></box></geometry><material><ambient>0.8 0.2 0.1 1</ambient><diffuse>0.8 0.2 0.1 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <!-- SECTION 3: CENTER SPEED-BUMP PLATFORM -->
+    <model name="center_platform">
+      <pose>0.0 -4.0 0.15 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>3.0 2.5 0.3</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>3.0 2.5 0.3</size></box></geometry><material><ambient>0.0 0.6 0.7 1</ambient><diffuse>0.0 0.6 0.7 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <!-- SECTION 4: SCATTERED PERIPHERAL OBSTACLES -->
+    <model name="block_southwest">
+      <pose>-5.5 -5.0 0.75 0 0 -0.6</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>1.2 1.2 1.5</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>1.2 1.2 1.5</size></box></geometry><material><ambient>0.2 0.7 0.3 1</ambient><diffuse>0.2 0.7 0.3 1</diffuse></material></visual>
+      </link>
+    </model>
+
+    <model name="block_southeast">
+      <pose>5.0 -6.0 0.6 0 0 0.2</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>1.5 0.8 1.2</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>1.5 0.8 1.2</size></box></geometry><material><ambient>0.6 0.2 0.7 1</ambient><diffuse>0.6 0.2 0.7 1</diffuse></material></visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>

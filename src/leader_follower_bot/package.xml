@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.ros.org/schema/package_format3.xsd"?>
+<package format="3">
+  <name>leader_follower_bot</name>
+  <version>1.0.0</version>
+  <description>ROS 2 Gazebo Leader-Follower Robot System using ArUco Marker Tracking</description>
+  <maintainer email="user@todo.todo">Developer</maintainer>
+  <license>Apache-2.0</license>
+
+  <depend>rclpy</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>cv_bridge</depend>
+  <depend>ros_gz_sim</depend>
+  <depend>ros_gz_bridge</depend>
+  <depend>ros_gz_image</depend>
+  <depend>robot_state_publisher</depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

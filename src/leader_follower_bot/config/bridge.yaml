@@ -1,0 +1,27 @@
+# Leader Velocity Command (ROS to Gazebo)
+- ros_topic_name: "/leader/cmd_vel"
+  gz_topic_name: "/leader/cmd_vel"
+  ros_type_name: "geometry_msgs/msg/Twist"
+  gz_type_name: "gz.msgs.Twist"
+  direction: ROS_TO_GZ
+
+# Leader Lidar Scan (Gazebo to ROS)
+- ros_topic_name: "/leader/scan"
+  gz_topic_name: "/scan"
+  ros_type_name: "sensor_msgs/msg/LaserScan"
+  gz_type_name: "gz.msgs.LaserScan"
+  direction: GZ_TO_ROS
+
+# Follower Velocity Command (ROS to Gazebo)
+- ros_topic_name: "/follower/cmd_vel"
+  gz_topic_name: "/follower/cmd_vel"
+  ros_type_name: "geometry_msgs/msg/Twist"
+  gz_type_name: "gz.msgs.Twist"
+  direction: ROS_TO_GZ
+
+# Follower Camera Image (Gazebo to ROS)
+- ros_topic_name: "/follower/camera/image_raw"
+  gz_topic_name: "/follower/camera/image_raw"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "gz.msgs.Image"
+  direction: GZ_TO_ROS
