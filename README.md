@@ -1,11 +1,3 @@
-
----
-
-# 2. Leader-Follower Robot
-
-This one-ku namma actual project structure based on what we checked, so this can be more specific.
-
-```markdown
 # Leader-Follower Robot
 
 A ROS 2-based multi-robot system in which a follower robot tracks and follows a leader robot while maintaining awareness of obstacles in the environment.
